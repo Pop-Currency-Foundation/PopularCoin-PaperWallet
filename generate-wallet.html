@@ -95,9 +95,9 @@ function setCryptoCurrency(toThis) {
 	switch (toThis)
 	{
 			case 'PopularCoin':
-		window.networkVersion = 0x1e;
-		window.privateKeyPrefix = 0x9e;
-		window.WIFPrefix = '6';
+		window.networkVersion = 0x3A;
+		window.privateKeyPrefix = 0xBA;
+		window.WIFPrefix = '5';
 		window.compressedWIFPrefix = 'Q';	
 		document.title = 'PopularCoin Paper-Wallet Generator *POP';
 		break;
@@ -138,9 +138,6 @@ var myDesign = getParameterByName('design');
 window.suppliesURL = 'https://bitcoinpaperwallet.com/?p=' + myDesign + '#purchase';
 
 switch (myDesign) {
-	case 'alt-popularcoin':
-		setCryptoCurrency('PopularCoin');
-		break;
 	case 'alt-popularcoingold':
 		setCryptoCurrency('PopularCoin');
 		break;
@@ -1492,7 +1489,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 			len = message.length * 8;
 
 		/* append padding */
-		x[len >> 5] |= 0x80 << (len % 32);
+		x[len >> 5] |= 0xBA << (len % 32);
 		x[(((len + 64) >>> 9) << 4) + 14] = len;
 
 		var h0 = 0x67452301;
@@ -10480,7 +10477,7 @@ Bitcoin.Util = {
 				</div>
 				<div class="instructionsarea">
 					<div class="notes">
-						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure PopularCoin wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
+						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure POP wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
 						<span id="instructions1"><em>Here's an overview of what will happen, step by step.</em></span> <br>
 						<br>
 						<div style="float: right; width: 410px; padding-left: 30px; margin-left: 20px; border-left: 4px solid #EEE;">
@@ -10708,35 +10705,35 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                   Denomination: 
                   <select id="backDenominationSelect" onChange="setDenomination(this.value);">
                     <option value="">*** None ***</option>
-                    <option value="10 BTC">10 BTC</option>
-                    <option value="5 BTC">5 BTC</option>
-                    <option value="2 BTC">2 BTC</option>
-                    <option value="1 BTC">1 BTC</option>
-                    <option value="10000 mBTC">10000 mBTC</option>
-                    <option value="5000 mBTC">5000 mBTC</option>
-                    <option value="1000 mBTC">1000 mBTC</option>
-                    <option value="500 mBTC">500 mBTC</option>
-                    <option value="200 mBTC">200 mBTC</option>
-                    <option value="100 mBTC">100 mBTC</option>
-                    <option value="50 mBTC">50 mBTC</option>
-                    <option value="20 mBTC">20 mBTC</option>
-                    <option value="10 mBTC">10 mBTC</option>
-                    <option value="5 mBTC">5 mBTC</option>
-                    <option value="1 mBTC">1 mBTC</option>
-                    <option value="50000 &mu;BTC">50000 &mu;BTC</option>
-                    <option value="10000 &mu;BTC">10000 &mu;BTC</option>
-                    <option value="5000 &mu;BTC">5000 &mu;BTC</option>
-                    <option value="1000 &mu;BTC">1000 &mu;BTC</option>
-                    <option value="500 &mu;BTC">500 &mu;BTC</option>
-                    <option value="100 &mu;BTC">100 &mu;BTC</option>
+                    <option value="50000000 POP">50,000,000 POP</option>
+                    <option value="25000000 POP">25,000,000 POP</option>
+                    <option value="1000000 POP">1,000,000 POP</option>
+                    <option value="500000 POP">500,000 POP</option>
+                    <option value="250000 POP">250,000 POP</option>
+                    <option value="100000 POP">100,000 POP</option>
+                    <option value="50000 POP">50,000 POP</option>
+                    <option value="25000 POP">25,000 POP</option>
+                    <option value="10000 POP">10,000 POP</option>
+                    <option value="5000 POP">5,000 POP</option>
+                    <option value="2000 POP">2,000 POP</option>
+                    <option value="1000 POP">1,000 POP</option>
+                    <option value="500 POP">500 POP</option>
+                    <option value="250 POP">250 POP</option>
+                    <option value="100 POP">100 POP</option>
+                    <option value="50 POP">50 POP</option>
+                    <option value="25 POP">25 POP</option>
+                    <option value="10 POP">10 POP</option>
+                    <option value="5 POP">5 POP</option>
+                    <option value="1 POP">1 POP</option>
+
                     <option value="other">Other...</option>
                   </select>
                   <div id="backDenominationOther" style="display: none;">
                   <input id="backDenominationOtherAmount" maxlength="5" size="6" value="1" onChange="setDenomination('other');">
                   <select id="backDenominationOtherUnit" onChange="setDenomination('other');">
-                  	<option value="BTC">BTC</option>
-                  	<option value="mBTC">mBTC</option>
-                  	<option value="&mu;BTC">&mu;BTC</option>
+                  	<option value="BTC">POP</option>
+                  	<option value="mBTC">mPOP</option>
+                  	<option value="&mu;BTC">&mu;POP</option>
                   	<option value="bits">bits</option>
                   </select>
                   </div><!-- end backDenominationOther -->
@@ -10982,8 +10979,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     
                      <span class="item" style="font-size: 11px;">This is a PopularCoin fork of the excellent project <a href="https://bitcoinpaperwallet.com" target="_blank">bitcoinpaperwallet.com</a>,
 + please consider <strong>DONATING</strong> to its developers.</span>
-<span class="item" style="font-size: 11px;">Contributions are shared by the <a href="https://bitcoinpaperwallet.com/#thanks" target="_blank">developers</a>,
-
+<span class="item" style="font-size: 11px;">
                     
                     <span class="item" style="font-size: 11px;">Contributions are shared by the <a href="https://bitcoinpaperwallet.com/#thanks" target="_blank">developers</a>, 
                     including pointbiz of <strong>bitaddress.org</strong>.</span>

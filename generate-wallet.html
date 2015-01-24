@@ -83,13 +83,34 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 	GitHub Repository: https://github.com/Pop-Currency-Foundation/PopularCoin-PaperWallet.git
+	
+	The Following Multi-Lingual function has been disabled by removal from line 10552-10562	
+	<select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
+                         <option value="english">English</option>
+                         -------------------------------------------------------------
+						 
+						 <option value="chinese">Chinese</option>
+                         <option value="traditional-chinese">Chinese (Traditional)</option>
+                         <option value="czech">Czech</option>
+                         <option value="dutch">Dutch</option>
+                         <option value="french">French</option>
+                         <option value="german">German</option>
+                         <option value="hebrew">Hebrew</option>
+                         <option value="italian">Italian</option>
+                         <option value="japanese">Japanese</option>
+                         option value="portuguese">Portuguese</option>
+                         <option value="russian">Russian</option>
+                         <option value="spanish">Spanish</option>
+                         <option value="swedish">Swedish</option>
+                         </select>
+                        ------------------------------------------------------------
 	-->
 
 	<meta charset="utf-8">
 
 <script type="text/javascript">
 
-// Basic initialization and switching for bitcoin vs. alternative cryptocurrencies
+// Basic initialization and switching for PopularCoin vs. other alternative cryptocurrencies
 function setCryptoCurrency(toThis) {
 	window.currencyName = toThis;
 	switch (toThis)
@@ -138,6 +159,9 @@ var myDesign = getParameterByName('design');
 window.suppliesURL = 'https://bitcoinpaperwallet.com/?p=' + myDesign + '#purchase';
 
 switch (myDesign) {
+	case 'alt-popularcoingplatinum':
+		setCryptoCurrency('PopularCoin');
+		break;
 	case 'alt-popularcoingold':
 		setCryptoCurrency('PopularCoin');
 		break;
@@ -10477,7 +10501,7 @@ Bitcoin.Util = {
 				</div>
 				<div class="instructionsarea">
 					<div class="notes">
-						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure POP wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
+						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure POP Wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
 						<span id="instructions1"><em>Here's an overview of what will happen, step by step.</em></span> <br>
 						<br>
 						<div style="float: right; width: 410px; padding-left: 30px; margin-left: 20px; border-left: 4px solid #EEE;">
@@ -10518,32 +10542,31 @@ Bitcoin.Util = {
                         
                         </div>
 						<span id="instructions2">
-                        <p style="margin-top: 0;"><strong>Change your wallet's design, language, or cryptocurrency here:</strong>
+                        <p style="margin-top: 0;"><strong>Select Design and Popular Currency to create your Wallet:                   </strong>
                           <select name="designPicker" id="designPicker" style="font-size: 12px;" onChange="setDesign(this.value, false);">
-                            <option value="default">PopularCoin (POP)</option>
-                            <option value="popularcoingold">PopularCoin Gold-Edition</option>
-                            <option value="popularcoinsilver">PopularCoin Silver-Edition</option>
-                            <option value="bitcoin">Bitcoin (BTC)</option>
-                            <option value="litecoin">Litecoin (LTC)</option>
+                            <option value="default">PopularCoin Wallet / Bitcoin Front</option>
+							<option value="alt-popularcoinsilver">PopularCoin Silver-Edition</option>
+                            <option value="alt-popularcoingold">PopularCoin Gold-Edition</option>
+                            <option value="alt-popularcoinplatinum">PopularCoin (POP) Platinum</option>
+                            <option value="alt-bitcoin">Bitcoin (BTC)</option>
+                            <option value="alt-litecoin">Litecoin (LTC)</option>
+							<option value="alt-popularcoinplatinum">--- Other Digital-Currencies ---</option>
                             <option value="alt-testnet">"Testnet"</option>
                           </select>
-                          <select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
-                            <option value="english">English</option>
-                            <option value="chinese">Chinese</option>
-                            <option value="traditional-chinese">Chinese (Traditional)</option>
-                            <option value="czech">Czech</option>
-                            <option value="dutch">Dutch</option>
-                            <option value="french">French</option>
-                            <option value="german">German</option>
-                            <option value="hebrew">Hebrew</option>
-                            <option value="italian">Italian</option>
-                            <option value="japanese">Japanese</option>
-                            <option value="portuguese">Portuguese</option>
-                            <option value="russian">Russian</option>
-                            <option value="spanish">Spanish</option>
-                            <option value="swedish">Swedish</option>
-                          </select>
+						
+						<select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
+                        <option value="english">English</option>
+
+                         </select>
                         </p>
+						
+						
+						
+						
+						
+						
+						
+                        
                         <strong>Step 1: Calibrate Printer</strong><br>
 Before printing out a wallet you may need to calibrate your output using the <em>zoom</em> and <em>horizontal&nbsp;shift</em> adjustments to account for your particular browser and printer combination. Otherwise, your wallet's back side may not line up with the front side.</span> <br>
 <br>
@@ -10731,9 +10754,9 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                   <div id="backDenominationOther" style="display: none;">
                   <input id="backDenominationOtherAmount" maxlength="5" size="9" value="1" onChange="setDenomination('other');">
                   <select id="backDenominationOtherUnit" onChange="setDenomination('other');">
-                  	<option value="BTC">POP</option>
-                  	<option value="mBTC">mPOP</option>
-                  	<option value="&mu;BTC">&mu;POP</option>
+                  	<option value="POP">POP</option>
+                  	<option value="mPOP">mPOP</option>
+                  	<option value="&mu;POP">&mu;POP</option>
                   	<option value="bits">bits</option>
                   </select>
                   </div><!-- end backDenominationOther -->

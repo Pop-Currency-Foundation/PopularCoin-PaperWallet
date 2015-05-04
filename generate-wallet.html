@@ -1,26 +1,23 @@
 <!doctype html>
 <html>
 <head>
-	<title>PopularCoin POP Paper-Wallet Generator</title>
+	<title>PopularCoin Paper Wallet Generator</title>
 	<!--
     
     generate-wallet.html (from https://bitcoinpaperwallet.com)
     
-    PopularCoin Paper-Wallet Contact: admin@popularcoin.com / www.popularcoin.com
+     PopularCoin Paper-Wallet contact@popularcoin.org / www.popularcoin.com
     Bitcoin Paper-Wallet Contact: Canton Becker / canton@gmail.com / www.cantonbecker.com
     
 	The bitcoinpaperwallet.com folding wallet design may not be used for commercial use
     without permission. The design of the bitcoin hologram sticker used to seal these wallets
     is copyrighted. As a courtesy, please do not modify this software in such a way that the
     links to purchase hologram stickers and wallet making supplies are removed or pointed elsewhere.
-     
-            Portions ©Copyright 2014 The PopularCoin POP Team under the MIT license.
+    
+    Portions ©Copyright 2014 The PopularCoin POP Team under the MIT license.
 
     Portions of this software (HTML and JavaScript) is ©Copyright 2014 Canton Becker and bitaddress.org
     and licensed under the MIT license.
-    
-    Special thanks to pointbiz/bitaddress.org, Artiom Chilaru/flexlabs.org, and Martin Ankerl
-    for significant contributions to this software.
     
     ****************************************************************************************
     ****************************************************************************************
@@ -83,45 +80,17 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 	GitHub Repository: https://github.com/Pop-Currency-Foundation/PopularCoin-PaperWallet.git
-	
-	The Following Multi-Lingual function has been disabled by removal from line 10552-10562	
-	<select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
-                         <option value="english">English</option>
-                         -------------------------------------------------------------
-						 
-						 <option value="chinese">Chinese</option>
-                         <option value="traditional-chinese">Chinese (Traditional)</option>
-                         <option value="czech">Czech</option>
-                         <option value="dutch">Dutch</option>
-                         <option value="french">French</option>
-                         <option value="german">German</option>
-                         <option value="hebrew">Hebrew</option>
-                         <option value="italian">Italian</option>
-                         <option value="japanese">Japanese</option>
-                         option value="portuguese">Portuguese</option>
-                         <option value="russian">Russian</option>
-                         <option value="spanish">Spanish</option>
-                         <option value="swedish">Swedish</option>
-                         </select>
-                        ------------------------------------------------------------
 	-->
 
 	<meta charset="utf-8">
 
 <script type="text/javascript">
 
-// Basic initialization and switching for PopularCoin vs. other alternative cryptocurrencies
+// Basic initialization and switching for bitcoin vs. alternative cryptocurrencies
 function setCryptoCurrency(toThis) {
 	window.currencyName = toThis;
 	switch (toThis)
 	{
-			case 'PopularCoin':
-		window.networkVersion = 0x3A;
-		window.privateKeyPrefix = 0xBA;
-		window.WIFPrefix = '5';
-		window.compressedWIFPrefix = 'Q';	
-		document.title = 'PopularCoin Paper-Wallet Generator *POP';
-		break;
 	case 'Bitcoin':	
 	  window.networkVersion = 0x00;
 	  window.privateKeyPrefix = 0x80;
@@ -133,6 +102,14 @@ function setCryptoCurrency(toThis) {
 		window.privateKeyPrefix = 0xb0;
 		window.WIFPrefix = '6';
 		window.compressedWIFPrefix = 'T';
+		document.title = 'Litecoin paper wallet generator';
+		break;
+	case 'PopularCoin':
+		window.networkVersion = 0x3A;
+		window.privateKeyPrefix = 0xBA;
+		window.WIFPrefix = '7';
+		window.compressedWIFPrefix = 'U';	
+		document.title = 'PopularCoin Paper-Wallet Generator *POP';
 		break;
 	case 'Testnet':
 		window.networkVersion = 0x6F;
@@ -142,8 +119,8 @@ function setCryptoCurrency(toThis) {
 		document.title = 'Bitcoin TESTNET paper wallet generator';
 		break;
 	default:
-	  alert ('Invalid cryptocurrency "' + toThis + '" at initialization. Defaulting to PopularCoin.');
-	  setCryptoCurrency('PopularCoin');		
+	  alert ('Invalid cryptocurrency "' + toThis + '" at initialization. Defaulting to Bitcoin.');
+	  setCryptoCurrency('Bitcoin');		
 	} // eof switch
 	return (true);
 }
@@ -159,7 +136,10 @@ var myDesign = getParameterByName('design');
 window.suppliesURL = 'https://bitcoinpaperwallet.com/?p=' + myDesign + '#purchase';
 
 switch (myDesign) {
-	case 'alt-popularcoingplatinum':
+	case 'alt-litecoin':
+		setCryptoCurrency('Litecoin');
+		break;
+			case 'alt-popularcoinplatinum':
 		setCryptoCurrency('PopularCoin');
 		break;
 	case 'alt-popularcoingold':
@@ -168,17 +148,11 @@ switch (myDesign) {
 	case 'alt-popularcoinsilver':
 		setCryptoCurrency('PopularCoin');
 		break;
-	case 'alt-bitcoin':
-		setCryptoCurrency('Bitcoin');
-		break;
-	case 'alt-litecoin':
-		setCryptoCurrency('Litecoin');
-		break;
 	case 'alt-testnet':
 		setCryptoCurrency('Testnet');
 		break;
 	default:
-	setCryptoCurrency('PopularCoin');
+	setCryptoCurrency('Bitcoin');
 	window.suppliesURL = 'https://bitcoinpaperwallet.com/#purchase'; // remove special currency flag
 } 
 
@@ -1513,7 +1487,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 			len = message.length * 8;
 
 		/* append padding */
-		x[len >> 5] |= 0xBA << (len % 32);
+		x[len >> 5] |= 0x80 << (len % 32);
 		x[(((len + 64) >>> 9) << 4) + 14] = len;
 
 		var h0 = 0x67452301;
@@ -10050,9 +10024,9 @@ Bitcoin.Util = {
 		#printeradjust span { background-color: #e2f9bd; padding: 2px 3px; border: 1px solid #009900; font-family: "Courier New", Courier, monospace; font-weight: bold; font-size: 12px;}
 		#printeradjust a:hover span { background-color: #CCFFCC; }
 		#printeradjust a, #printeradjust a:hover {text-decoration: none;}
-		#printeradjust input { text-align: center; margin: 0 2px;}
+		#printeradjust input { text-align: center; margin: 0 2px; width: 20px;}
 		
-		#detailwallet { margin-left: 30px; }
+		#detailwallet { margin-left: 35px; color: #d36200; }
 		
 		#paperarea { min-height: 120px; display: none; }
 		#paperarea .keyarea { border: 2px solid #f7931a; border-top: 0; }
@@ -10440,7 +10414,7 @@ Bitcoin.Util = {
               <span><a href="?culture=fr" id="culturefr">Français</a></span> -->
               &nbsp;
           	</div>
-			<div id="tagline">Open Source JavaScript <script type="text/javascript">document.write(window.currencyName);</script> Paper Wallet Generator <span>Updated Jan 21, 2015</span></div>
+			<div id="tagline">Open Source JavaScript <script type="text/javascript">document.write(window.currencyName);</script> Paper Wallet Generator <span>Updated May 2, 2015</span></div>
 			<div id="tagsite">For help, security tips, or wallet making supplies visit <a href="https://bitcoinpaperwallet.com">bitcoinpaperwallet.com</a></div>
             <div id="tagwarning"></div>
 			<div id="seedpoolarea"><textarea rows="16" cols="62" id="seedpool"></textarea></div>
@@ -10501,7 +10475,7 @@ Bitcoin.Util = {
 				</div>
 				<div class="instructionsarea">
 					<div class="notes">
-						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure POP Wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
+						<h1><span id="instructions0">Welcome! Let's print out a beautiful and secure paper wallet for your <script type="text/javascript">document.write(window.currencyName);</script>s.</span></h1>
 						<span id="instructions1"><em>Here's an overview of what will happen, step by step.</em></span> <br>
 						<br>
 						<div style="float: right; width: 410px; padding-left: 30px; margin-left: 20px; border-left: 4px solid #EEE;">
@@ -10542,31 +10516,32 @@ Bitcoin.Util = {
                         
                         </div>
 						<span id="instructions2">
-                        <p style="margin-top: 0;"><strong>Select Design and Popular Currency to create your Wallet:                   </strong>
+                        <p style="margin-top: 0;"><strong>Change your wallet's design, language, or cryptocurrency here:</strong>
                           <select name="designPicker" id="designPicker" style="font-size: 12px;" onChange="setDesign(this.value, false);">
-                            <option value="default">PopularCoin Wallet / Bitcoin Front</option>
+                            
+                            <option value="alt-popularcoingold">PopularCoin Gold-Edition</option>							
 							<option value="alt-popularcoinsilver">PopularCoin Silver-Edition</option>
-                            <option value="alt-popularcoingold">PopularCoin Gold-Edition</option>
-                            <option value="alt-popularcoinplatinum">PopularCoin (POP) Platinum</option>
-                            <option value="alt-bitcoin">Bitcoin (BTC)</option>
-                            <option value="alt-litecoin">Litecoin (LTC)</option>
-							<option value="alt-popularcoinplatinum">--- Other Digital-Currencies ---</option>
-                            <option value="alt-testnet">"Testnet"</option>
+                            <option value="alt-popularcoinplatinum">PopularCoin (POP) Platinum</option> 
+                            <option value="alt-litecoin">Litecoin LTC</option> 							
+						    <option value="default">Bitcoin</option>
                           </select>
-						
-						<select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
-                        <option value="english">English</option>
-
-                         </select>
+                          <select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
+                            <option value="english">English</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="traditional-chinese">Chinese (Traditional)</option>
+                            <option value="czech">Czech</option>
+                            <option value="dutch">Dutch</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="hebrew">Hebrew</option>
+                            <option value="italian">Italian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="portuguese">Portuguese</option>
+                            <option value="russian">Russian</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="swedish">Swedish</option>
+                          </select>
                         </p>
-						
-						
-						
-						
-						
-						
-						
-                        
                         <strong>Step 1: Calibrate Printer</strong><br>
 Before printing out a wallet you may need to calibrate your output using the <em>zoom</em> and <em>horizontal&nbsp;shift</em> adjustments to account for your particular browser and printer combination. Otherwise, your wallet's back side may not line up with the front side.</span> <br>
 <br>
@@ -10594,9 +10569,9 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 			<div id="calibratearea" class="walletarea">
 				<div class="commands">
 					<div id="calibratecommands">
-						<p id="calibrateinstructions" class="instructions">The calibration step helps line up the front and back sides of your printout. <a href="#" onClick="doPrint('calibration');">Print out this page</a> in LANDSCAPE FORMAT (wide instead of tall.) Based on the results, adjust the "zoom" and "horizontal shift" in the upper-right corner of this page and keep printing tests until:<br /><br />
-                        (1) Your printed ruler more or less measures like a real ruler. (REDUCE the zoom to increase the ruler size.)<br /><br />
-                        (2) Your printed ruler is horizontally centered on the page, leaving approximately equal margins on the left and right sides of the page. (INCREASE the horizontal shift to push the ruler to the right.)<br />
+						<p id="calibrateinstructions" class="instructions">The calibration step helps line up the front and back sides of your printout. <a href="#" onClick="doPrint('calibration');">Print out this page</a> in LANDSCAPE ORIENTATION (wide instead of tall.) Based on the results, adjust the "zoom" and "horizontal shift" in the upper-right corner of this page and keep printing tests until:<br /><br />
+                        (1) Your printed ruler is horizontally centered on the page, leaving equal margins on the left and right sides of the page. (INCREASE the horizontal shift to push the ruler to the right.)<br />
+                        (2) Your printed ruler is approximately the same size as a real ruler. Smaller by up to 1 inch is fine. (REDUCE the zoom to increase the ruler size.) <br /><br />
                         <br />
                         What settings worked best for you? <a href="https://bitcoinpaperwallet.com/feedback/" target="_blank">Feedback form &raquo;</a></p>
 						<span class="print">
@@ -10728,35 +10703,35 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                   Denomination: 
                   <select id="backDenominationSelect" onChange="setDenomination(this.value);">
                     <option value="">*** None ***</option>
-                    <option value="50M POP">50,000,000 POP</option>
-                    <option value="25M POP">25,000,000 POP</option>
-                    <option value="1M POP">1,000,000 POP</option>
-                    <option value="500,000 POP">500,000 POP</option>
-                    <option value="250,000 POP">250,000 POP</option>
-                    <option value="100,000 POP">100,000 POP</option>
-                    <option value="50,000 POP">50,000 POP</option>
-                    <option value="25,000 POP">25,000 POP</option>
-                    <option value="10,000 POP">10,000 POP</option>
-                    <option value="5,000 POP">5,000 POP</option>
-                    <option value="2,000 POP">2,000 POP</option>
-                    <option value="1,000 POP">1,000 POP</option>
-                    <option value="500 POP">500 POP</option>
-                    <option value="250 POP">250 POP</option>
-                    <option value="100 POP">100 POP</option>
-                    <option value="50 POP">50 POP</option>
-                    <option value="25 POP">25 POP</option>
-                    <option value="10 POP">10 POP</option>
-                    <option value="5 POP">5 POP</option>
-                    <option value="1 POP">1 POP</option>
-
+                    <option value="10 BTC">10 BTC</option>
+                    <option value="5 BTC">5 BTC</option>
+                    <option value="2 BTC">2 BTC</option>
+                    <option value="1 BTC">1 BTC</option>
+                    <option value="50000 Bits">50000 Bits</option>
+                    <option value="10000 Bits">10000 Bits</option>
+                    <option value="5000 Bits">5000 Bits</option>
+                    <option value="1000 Bits">1000 Bits</option>
+                    <option value="500 Bits">500 Bits</option>
+                    <option value="100 Bits">100 Bits</option>
+                    <option value="50000 mBTC">50000 mBTC</option>
+                    <option value="10000 mBTC">10000 mBTC</option>
+                    <option value="5000 mBTC">5000 mBTC</option>
+                    <option value="1000 mBTC">1000 mBTC</option>
+                    <option value="500 mBTC">500 mBTC</option>
+                    <option value="100 mBTC">100 mBTC</option>
+                    <option value="50 mBTC">50 mBTC</option>
+                    <option value="20 mBTC">20 mBTC</option>
+                    <option value="10 mBTC">10 mBTC</option>
+                    <option value="5 mBTC">5 mBTC</option>
+                    <option value="1 mBTC">1 mBTC</option>
                     <option value="other">Other...</option>
                   </select>
                   <div id="backDenominationOther" style="display: none;">
-                  <input id="backDenominationOtherAmount" maxlength="5" size="9" value="1" onChange="setDenomination('other');">
+                  <input id="backDenominationOtherAmount" maxlength="5" size="6" value="1" onChange="setDenomination('other');">
                   <select id="backDenominationOtherUnit" onChange="setDenomination('other');">
-                  	<option value="POP">POP</option>
-                  	<option value="mPOP">mPOP</option>
-                  	<option value="&mu;POP">&mu;POP</option>
+                  	<option value="BTC">BTC</option>
+                  	<option value="mBTC">mBTC</option>
+                  	<option value="&mu;BTC">&mu;BTC</option>
                   	<option value="bits">bits</option>
                   </select>
                   </div><!-- end backDenominationOther -->
@@ -10789,7 +10764,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 			</div><!-- end commands -->
 
                 <div id="backText">
-					<div id="backSeal"><p id="backSealBig">1000</p><p id="backSealSmall">mPOP</p><img src="images/front-seal.png" width="105" height="78"></div>
+					<div id="backSeal"><p id="backSealBig">1000</p><p id="backSealSmall">mBTC</p><img src="images/front-seal.png" width="105" height="78"></div>
                     
                     <div id="backPaperWallet"></div>
                 	<div id="backAmount"></div>
@@ -11003,11 +10978,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                      <span class="item" style="font-size: 11px;">This is a PopularCoin fork of the excellent project <a href="https://bitcoinpaperwallet.com" target="_blank">bitcoinpaperwallet.com</a>,
 + please consider <strong>DONATING</strong> to its developers.</span>
 <span class="item" style="font-size: 11px;">
-                    
-                    <span class="item" style="font-size: 11px;">Contributions are shared by the <a href="https://bitcoinpaperwallet.com/#thanks" target="_blank">developers</a>, 
-                    including pointbiz of <strong>bitaddress.org</strong>.</span>
-
-
+                 
 				</div>
 			</div>
 			<div class="authorpgp">
@@ -11697,7 +11668,7 @@ ninja.publicKey = {
 		translations: {
 			"en": {
 				// javascript alerts or messages
-				"paperlabelbitcoinaddress": "PopularCoin Address:",
+				"paperlabelbitcoinaddress": "Bitcoin Address:",
 				"paperlabelprivatekey": "Private Key (Wallet Import Format):",
 				"paperlabelencryptedkey": "Encrypted Private Key (Password required)",
 				"bip38alertpassphraserequired": "Passphrase required for BIP38 key",
@@ -11708,12 +11679,12 @@ ninja.publicKey = {
 
 			"es": {
 				// javascript alerts or messages
-				"paperlabelbitcoinaddress": "Dirección PopularCoin:",
+				"paperlabelbitcoinaddress": "Dirección Bitcoin:",
 				"paperlabelprivatekey": "Clave privada (formato para importar):",
 
 				// header and menu html
-				"tagline": "Generador de carteras PopularCoin de código abierto en lado de cliente con Javascript",
-				"generatelabelbitcoinaddress": "Generando dirección PopularCoin...",
+				"tagline": "Generador de carteras Bitcoin de código abierto en lado de cliente con Javascript",
+				"generatelabelbitcoinaddress": "Generando dirección Bitcoin...",
 				"generatelabelmovemouse": "<blink>Mueve un poco el ratón para crear entropía...</blink>",
 				"calibratewallet": "Calibrate Printer (es)",
 				"paperwallet": "Cartera en papel",
@@ -11721,11 +11692,11 @@ ninja.publicKey = {
 
 				// footer html
 				"footerlabeldonations": "Donaciones:",
-				"footerlabeltranslatedby": "Traducción: <b>12345</b>Qypv2QSmuRXcciT5oEB27mPbWGeva",
+				"footerlabeltranslatedby": "Traducción: <b>12345</b>Vypv2QSmuRXcciT5oEB27mPbWGeva",
 				"footerlabelpgp": "Clave pública PGP",
 				"footerlabelversion": "Histórico de versiones",
 				"footerlabelgithub": "Repositorio GitHub",
-				"footerlabelcopyright1": "&copy; Copyright 2014,15 PopularCoin POP, Canton Becker and bitaddress.org.",
+				"footerlabelcopyright1": "&copy; Copyright 2014 Canton Becker and bitaddress.org.",
 				"footerlabelcopyright2": "Copyright del código JavaScript: en el fuente.",
 				"footerlabelnowarranty": "Sin garantía.",
 
@@ -11738,12 +11709,12 @@ ninja.publicKey = {
 				
 			"fr": {
 				// javascript alerts or messages
-				"paperlabelbitcoinaddress": "Adresse PopularCoin:",
+				"paperlabelbitcoinaddress": "Adresse Bitcoin:",
 				"paperlabelprivatekey": "Clé Privée (Format d'importation de porte-monnaie):",
 
 				// header and menu html
-				"tagline": "Générateur De Porte-Monnaie PopularCoin Javascript Hors-Ligne",
-				"generatelabelbitcoinaddress": "Création de l'adress PopularCoin...",
+				"tagline": "Générateur De Porte-Monnaie Bitcoin Javascript Hors-Ligne",
+				"generatelabelbitcoinaddress": "Création de l'adresse Bitcoin...",
 				"generatelabelmovemouse": "<blink>BOUGEZ votre souris pour ajouter de l'entropie...</blink>",
 				"calibratewallet": "Calibrate Printer (fr)",
 				"paperwallet": "Porte-Monnaie Papier",
@@ -11751,11 +11722,11 @@ ninja.publicKey = {
 
 				// footer html
 				"footerlabeldonations": "Dons:",
-				"footerlabeltranslatedby": "Traduction: QGy7NYSJNUYqUdXTBow5d7bCUEJkUFDFSq",
+				"footerlabeltranslatedby": "Traduction: 1Gy7NYSJNUYqUdXTBow5d7bCUEJkUFDFSq",
 				"footerlabelpgp": "Clé Publique PGP",
 				"footerlabelversion": "Historique De Version Signé",
 				"footerlabelgithub": "Dépôt GitHub",
-				"footerlabelcopyright1": "&copy; Copyright 2014,15 PopularCoin POP, Canton Becker and bitaddress.org.",
+				"footerlabelcopyright1": "&copy; Copyright 2014 Canton Becker and bitaddress.org.",
 				"footerlabelcopyright2": "Les droits d'auteurs JavaScript sont inclus dans le code source.",
 				"footerlabelnowarranty": "Aucune garantie.",
 				"newaddress": "Générer Une Nouvelle Adresse",
@@ -12025,7 +11996,7 @@ ninja.publicKey = {
 					text: "#1937a9",
 					textShadow: "white",
 					textPointer: "white",
-				},
+				},				
 				'default': {
 					publicUpper: "#fff57c",
 					publicLower: "#f7931a",
@@ -13433,7 +13404,7 @@ ninja.publicKey = {
 		window.landscapeAlert ++;
 		updateCalibrationInfo();
 		if (window.landscapeAlert == 1) {
-			alert ('Important note: This design requires that you set your printer to output in LANDSCAPE (wide) format.');	
+			alert ('Important note: Please configure your print settings to LANDSCAPE (wide) orientation.');	
 		}
 		
 		if (myContext == 'generate') {
@@ -13492,8 +13463,8 @@ ninja.publicKey = {
 			document.getElementById("printerzoom").value = 3;
 			document.getElementById("printershift").value = 3;
 		} else if (result.browser.name == 'Firefox' && result.os.name == 'Ubuntu') { // live CD?
-			document.getElementById("printerzoom").value = 2;
-			document.getElementById("printershift").value = 3;
+			document.getElementById("printerzoom").value = 1;
+			document.getElementById("printershift").value = 0;
 		} else if (result.browser.name == 'Iceweasel' && result.os.name == 'Debian') { 
 			document.getElementById("printerzoom").value = 1.8;
 			document.getElementById("printershift").value = 2.9;
@@ -13521,14 +13492,14 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVATE KEY / WITHDRAW",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "POPULARCOIN PAPER WALLET",
+			backPaperWallet: "BITCOIN PAPER WALLET",
 			backAmount: "Amount Added",
 			backDate: "Date",
 			backNotes: "Notes:",
-			backInst1: "To deposit additional funds to this paper wallet, send PopularCoins to its public address, anytime.",
-			backInst2: "Verify your balance by searching for the public address using a service like popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>Do not reveal the private key</strong> until you are ready to import the balance on this wallet to a PopularCoin client, exchange, or online wallet.",
-			backInst4: "When withdrawing your funds from this wallet you should remove the <strong>ENTIRE BALANCE</strong>. If you attempt to spend only some of the funds you will likely lose the remaining PopularCoins forever.<br />For instructions visit bitcoinpaperwallet.com",
+			backInst1: "To deposit additional funds to this paper wallet, send bitcoins to its public address, anytime.",
+			backInst2: "Verify your balance by searching for the public address using a service such as blockchain.info",
+			backInst3: "<strong>Do not reveal the private key</strong> until you are ready to import the balance on this wallet to a bitcoin client, exchange, or online wallet.",
+			backInst4: "When withdrawing your funds from this wallet you should remove the <strong>ENTIRE BALANCE</strong>. If you attempt to spend only some of the funds you will likely lose the remaining bitcoins forever.<br />For instructions visit bitcoinpaperwallet.com",
 		},
 
 		'chinese': {
@@ -13538,12 +13509,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "私钥/取款",
 			backLongTextFontSize: "10px",
-			backPaperWallet: "POPULARCOIN 纸钱包",
+			backPaperWallet: "BITCOIN 纸钱包",
 			backAmount: "添加数量",
 			backDate: "日期",
 			backNotes: "注释",
 			backInst1: "可以随时向公开地址发送比特币为该纸钱包添加资金。",
-			backInst2: "使用例如popularcoin.info/chain/PopCoin这样的服务，通过搜索公开地址来查询你的余额。",
+			backInst2: "使用例如blockchain.info这样的服务，通过搜索公开地址来查询你的余额。",
 			backInst3: "在你准备将余额导入到比特币客户端、交易平台或者在线钱包之前，<strong>请勿泄露私钥</strong>。",
 			backInst4: "从此钱包取出资金时，请将<strong>全部余额一次性</strong>取走。如果你试图只取走一部分，那么你很有可能永远失去剩余的比特币。<br /><br />有疑问？请访问 : bitcoinpaperwallet.com",
 		},
@@ -13555,12 +13526,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "錢包導入格式",
 			withdraw: "取款",
 			backLongTextFontSize: "10px",
-			backPaperWallet: "PopularCoin 紙錢包",
+			backPaperWallet: "BITCOIN 紙錢包",
 			backAmount: "添加數量",
 			backDate: "日期",
 			backNotes: "註釋",
 			backInst1: "可以隨時向公開地址發送比特幣為該紙錢包添加資金。",
-			backInst2: "使用例如popularcoin.info/chain/PopCoin這樣的服務，通過搜索公開地址來查詢你的餘額。",
+			backInst2: "使用例如blockchain.info這樣的服務，通過搜索公開地址來查詢你的餘額。",
 			backInst3: "在你準備將餘額導入到比特幣客戶端、交易平台或者在線錢包之前，<strong>請勿洩露私鑰</strong>。",
 			backInst4: "從此錢包取出資金時，請將<strong>全部餘額一次性</strong>取走。如果你試圖只取走一部分，那麼你很有可能會永遠失去剩餘的比特幣。<br /><br />有疑問？請訪問 : bitcoinpaperwallet.com",
 		},
@@ -13572,12 +13543,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "SOUKROMÝ KLÍČ / VYBRAT",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "PopularCoin Papírová peněženka",
+			backPaperWallet: "BITCOIN Papírová peněženka",
 			backAmount: "Částka",
 			backDate: "Datum",
 			backNotes: "Poznámky:",
 			backInst1: "Pokud chcete vložit více peněz do této peněženky, můžete kdykoli použít stejnou veřejnou adresu.",
-			backInst2: "Pokud chcete ověřit zůstatek v peněžence, můžete použít službu popularcoin.info/chain/PopCoin a zadat veřejnou adresu.",
+			backInst2: "Pokud chcete ověřit zůstatek v peněžence, můžete použít službu blockchain.info a zadat veřejnou adresu.",
 			backInst3: "<strong>NEUKAZUJTE NIKOMU SOUKROMÝ KLÍČ</strong> dokud se nerozhodnete opravdu převést zůstatek do klienta,na burzu nebo do online peněženky. ",
 			backInst4: "Při výběru z této peněženky byste měli převést <strong>CELÝ ZŮSTATEK</strong>. Pokud převedete jen část, je možné že příjdete o zbytek.<br />Dotazy? Navštivte bitcoinpaperwallet.com",
 		},
@@ -13589,13 +13560,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVÉ SLEUTEL",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin Papieren portemonnee",
+			backPaperWallet: "BITCOIN Papieren portemonnee",
 			backAmount: "Bedrag toegevoegd",
 			backDate: "Datum",
 			backNotes: "Notities:",
-			backInst1: "Om meer geld naar deze papieren portemonnee over te maken kun je altijd PopularCoins naar het publieke adres sturen.",
-			backInst2: "Verifieer je saldo door het publieke adress op te zoeken met een service zoals popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>LAAT JE PRIVÉ SLEUTEL NIET ZIEN</strong> totdat je het saldo van deze portemonnee over wilt maken naar een PopularCoin client, exchange of online portemonnee.",
+			backInst1: "Om meer geld naar deze papieren portemonnee over te maken kun je altijd bitcoins naar het publieke adres sturen.",
+			backInst2: "Verifieer je saldo door het publieke adress op te zoeken met een service zoals blockchain.info",
+			backInst3: "<strong>LAAT JE PRIVÉ SLEUTEL NIET ZIEN</strong> totdat je het saldo van deze portemonnee over wilt maken naar een bitcoin client, exchange of online portemonnee.",
 			backInst4: "Als je het saldo van deze portemonnee uit wilt laten betalen, dan kun je het beste het <strong>HELE BEDRAG</strong> opnemen. Als je probeert een beetje op te nemen ben je waarschijnlijk de overige bitcoins kwijt.<br /><br />Vragen? Ga naar bitcoinpaperwallet.com",
 		},
 
@@ -13606,13 +13577,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CLÉ SECRÈTE / FAIRE UN RETRAIT",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin Portefeuille papier",
+			backPaperWallet: "BITCOIN Portefeuille papier",
 			backAmount: "Montant ajouté",
 			backDate: "Date",
 			backNotes: "Notes:",
-			backInst1: "Pour déposer plus de fonds dans ce portefeuille papier, envoyer des PopularCoins à son adresse publique n'importe quand.",
-			backInst2: "Vérifiez le solde en faisant une recherche de l'adresse publique en utilisant un service tel que popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>NE RÉVÉLEZ PAS VOTRE CLÉ SECRÈTE</strong> jusqu'à ce que vous soyez prêt à transférer le solde de ce portefeuille à un client PopularCoin, une plate-forme d'échange ou un portefeuille en-ligne.",
+			backInst1: "Pour déposer plus de fonds dans ce portefeuille papier, envoyer des Bitcoins à son adresse publique n'importe quand.",
+			backInst2: "Vérifiez le solde en faisant une recherche de l'adresse publique en utilisant un service tel que blockchain.info",
+			backInst3: "<strong>NE RÉVÉLEZ PAS VOTRE CLÉ SECRÈTE</strong> jusqu'à ce que vous soyez prêt à transférer le solde de ce portefeuille à un client Bitcoin, une plate-forme d'échange ou un portefeuille en-ligne.",
 			backInst4: "Lorsque vous allez retirer des fonds de ce portefeuille, vous devriez transférer le <strong>SOLDE EN ENTIER</strong>. Si vous essayez de ne dépenser qu'une partie des fonds, vous risquez de perdre le reste des Bitcoins à tout jamais.<br /><br />Questions ? Visitez : bitcoinpaperwallet.com",
 		},
 		
@@ -13623,13 +13594,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVATER SCHLÜSSEL / ABHEBEN",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin PAPIERBRIEFTASCHE",
+			backPaperWallet: "BITCOIN PAPIERBRIEFTASCHE",
 			backAmount: "Gutschriften",
 			backDate: "Datum",
 			backNotes: "Notizen:",
-			backInst1: "Um das Guthaben auf dieser Papierbrieftasche zu erhöhen, sende PopularCoins an ihre öffentliche Adresse, jederzeit.",
-			backInst2: "Um das Guthaben zu bestätigen suche nach der öffentlichen Adresse auf einem Service wie popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>Mache den privaten schlüssel nie bekannt</strong> bis du bereit bist das Guthaben auf dieser Brieftasche abzuheben auf einen PopularCoin-Client, eine Wechselbörse oder eine Onlinebrieftasche.",
+			backInst1: "Um das Guthaben auf dieser Papierbrieftasche zu erhöhen, sende bitcoins an ihre öffentliche Adresse, jederzeit.",
+			backInst2: "Um das Guthaben zu bestätigen suche nach der öffentlichen Adresse auf einem Service wie blockchain.info",
+			backInst3: "<strong>Mache den privaten schlüssel nie bekannt</strong> bis du bereit bist das Guthaben auf dieser Brieftasche abzuheben auf einen Bitcoin-Client, eine Wechselbörse oder eine Onlinebrieftasche.",
 			backInst4: "Beim Abheben des Guthabens sollte das <strong>Ganze Guthaben</strong> auf einmal abgehoben werden. Beim Versuch nur einen Teil des Guthaben auszugeben kann es zum dauerhaften Verlust des restlichen Guthabens kommen. <br /><br />Fragen? Geh auf bitcoinpaperwallet.com",
 		}, 
 
@@ -13640,12 +13611,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "מפתח פרטי / משיכה",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "PopularCoin ארנק נייר",
+			backPaperWallet: "BITCOIN ארנק נייר",
 			backAmount: "כמות שנטענה",
 			backDate: "תאריך",
 			backNotes: "הערות",
 			backInst1: "כדי להפקיד לארנק זה, שלחו ביטקוינים לכתובת הפומבית, בכל זמן",
-			backInst2: "ודאו את המאזן שלכם ע\"י חיפוש הכתובת הפומבית בעזרת שירות כמו popularcoin.info/chain/PopCoin",
+			backInst2: "ודאו את המאזן שלכם ע\"י חיפוש הכתובת הפומבית בעזרת שירות כמו blockchain.info",
 			backInst3: "אף פעם אל תגלו לאף אחד את המפתח הפרטי שלכם עד שאתם מוכנים לייצא את המטבעות לארנק ביטקוין ממוחשב, בורסאת ביטקוין או ארנק מקוון",
 			backInst4: "בעת משיכת המטבעות, יש למשוך את -כל המטבעות- שבארנק. אם תנסו להוציא רק חלק מהמטבעות, תאבדו את המטבעות הנשארים לנצח שאלות? פנו ל: bitcoinpaperwallet.com",
 		},
@@ -13657,13 +13628,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CHIAVE PRIVATA / PRELEVA",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "PopularCoin PORTAFOGLIO CARTACEO",
+			backPaperWallet: "BITCOIN PORTAFOGLIO CARTACEO",
 			backAmount: "Importo depositato",
 			backDate: "Data",
 			backNotes: "Note:",
-			backInst1: "Per depositare altri fondi su questo portafoglio cartaceo, invia PopularCoins al suo indirizzo pubblico, in qualsiasi momento.",
-			backInst2: "Puoi verificare il saldo cercando l'indirizzo pubblico su un servizio tipo popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>NON ESPORRE LA CHIAVE PRIVATA</strong> se non per importare immediatamente il contenuto del portafoglio su un client PopularCoin, un exchange o un portafoglio online.",
+			backInst1: "Per depositare altri fondi su questo portafoglio cartaceo, invia bitcoins al suo indirizzo pubblico, in qualsiasi momento.",
+			backInst2: "Puoi verificare il saldo cercando l'indirizzo pubblico su un servizio tipo blockchain.info",
+			backInst3: "<strong>NON ESPORRE LA CHIAVE PRIVATA</strong> se non per importare immediatamente il contenuto del portafoglio su un client bitcoin, un exchange o un portafoglio online.",
 			backInst4: "Se prelevi i fondi depositati su questo portafoglio, ti consigliamo di prelevare l'<strong>INTERO IMPORTO</strong> depositato. Se cerchi di spendere i fondi solo in parte, probabilmente perderai i bitcoins residui.<br />Domande? Visita : bitcoinpaperwallet.com",
 		},
 
@@ -13674,12 +13645,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "秘 密 鍵 / 出 金",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin ペーパーウォレット",
+			backPaperWallet: "BITCOIN ペーパーウォレット",
 			backAmount: "入金金額",
 			backDate: "日付",
 			backNotes: "メモ:",
 			backInst1: "公開アドレス宛てに入金することで、このウォレットにいつでもビットコインを追加することができます。",
-			backInst2: "popularcoin.info/chain/PopCoinのようなサービスで公開アドレスを検索することで、残高を確認することができます。",
+			backInst2: "blockchain.infoのようなサービスで公開アドレスを検索することで、残高を確認することができます。",
 			backInst3: "ビットコインクライアントやオンラインウォレット、交換所にビットコインを移動する必要があるまで、<strong>秘密鍵を開封しないでください</strong>。",
 			backInst4: "このウォレットからビットコインを出金する際には、<strong>全ての残高</strong>を出金してください。一部を残して出金した場合、残ったビットコインが永遠に失われる恐れがあります。<br /><br />詳しい情報は、bitcoinpaperwallet.comを参照してください。",
 		},
@@ -13691,13 +13662,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CHAVE PRIVADA / SAQUE",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin PAPER WALLET",
+			backPaperWallet: "BITCOIN PAPER WALLET",
 			backAmount: "Saldo",
 			backDate: "Data",
 			backNotes: "Anotações:",
-			backInst1: "Para depositar fundos adicionais na sua paper wallet deve-se enviar os PopularCoins para seu endereço público, a qualquer hora.",
-			backInst2: "Verifique o saldo através do seu endereço público usando um serviço como o popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>NÃO REVELE A SUA CHAVE PRIVADA</strong> até que você esteja pronto a importar o saldo total para um cliente PopularCoin ou uma carteira online ou, ainda, trocar sua paper wallet com alguém.",
+			backInst1: "Para depositar fundos adicionais na sua paper wallet deve-se enviar os bitcoins para seu endereço público, a qualquer hora.",
+			backInst2: "Verifique o saldo através do seu endereço público usando um serviço como o blockchain.info",
+			backInst3: "<strong>NÃO REVELE A SUA CHAVE PRIVADA</strong> até que você esteja pronto a importar o saldo total para um cliente bitcoin ou uma carteira online ou, ainda, trocar sua paper wallet com alguém.",
 			backInst4: "<strong>TRANSFIRA TODO O SALDO</strong> dessa carteira ao importá-la. Se você tentar importar somente uma parcela provavelmente o risco de perder o restante dos bitcoins é alto.<br /><br />Para mais informações visite bitcoinpaperwallet.com",
 		},
 
@@ -13708,12 +13679,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "ЗАКРЫТЫЙ КЛЮЧ / ВЫВОД",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "PopularCoin БУМАЖНЫЙ КОШЕЛЁК",
+			backPaperWallet: "BITCOIN БУМАЖНЫЙ КОШЕЛЁК",
 			backAmount: "Внесено",
 			backDate: "Дата",
 			backNotes: "Заметки:",
 			backInst1: "Для внесения дополнительных финансов на этот бумажный кошелёк отправьте биткоины на его открытый адрес в любое время.",
-			backInst2: "Проверьте баланс найдя открытый адрес в таком сервисе, как popularcoin.info/chain/PopCoin",
+			backInst2: "Проверьте баланс найдя открытый адрес в таком сервисе, как blockchain.info",
 			backInst3: "<strong>НЕ ВСКРЫВАЙТЕ СВОЙ ЗАКРЫТЫЙ КЛЮЧ</strong> до тех пор, пока вы не будете готовы импортировать баланс этого кошелька в свой bitcoin-клиент, обменник, или онлайн-кошелёк.",
 			backInst4: "Вы должны снять <strong>ВСЕ</strong> свои средства с этого кошелька единовременно. Если вы попытаетесь истратить только некую часть своих финансов, то, скорее всего, потеряете оставшиеся биткоины навсегда.<br /><br />Вопросы? Посетите: bitcoinpaperwallet.com.",
 		},
@@ -13725,14 +13696,14 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CLAVE PRIVADA / RETIRAR",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "PopularCoin Cartera de papel",
+			backPaperWallet: "BITCOIN Cartera de papel",
 			backAmount: "Cantidad añadida",
 			backDate: "Fecha",
 			backNotes: "Notas:",
-			backInst1: "Para depositar fondos adicionales en esta cartera de papel, envíe unos PopularCoins a su dirección pública.",
-			backInst2: "Para verificar su saldo, busque su dirección pública en un sitio web como popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>NUNCA DEBE MOSTRAR SU CLAVE PRIVADA</strong> hasta que este preparado para importar el saldo de esta cartera a un cliente de PopularCoin, un sitio de cambio, o una cartera de internet.",
-			backInst4: "Cuando este sacando sus fondos, debe sacar <strong>LA TOTALIDAD DE SU SALDO</strong>. Si no hace esto, es posible que pierda sus PopularCoin.<br /><br />¿Dudas? Vaya a bitcoinpaperwallet.com",
+			backInst1: "Para depositar fondos adicionales en esta cartera de papel, envíe unos Bitcoins a su dirección pública.",
+			backInst2: "Para verificar su saldo, busque su dirección pública en un sitio web como blockchain.info",
+			backInst3: "<strong>NUNCA DEBE MOSTRAR SU CLAVE PRIVADA</strong> hasta que este preparado para importar el saldo de esta cartera a un cliente de bitcoin, un sitio de cambio, o una cartera de internet.",
+			backInst4: "Cuando este sacando sus fondos, debe sacar <strong>LA TOTALIDAD DE SU SALDO</strong>. Si no hace esto, es posible que pierda sus Bitcoin.<br /><br />¿Dudas? Vaya a bitcoinpaperwallet.com",
 		},
 
 		'swedish': {
@@ -13742,13 +13713,13 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVAT NYCKEL / TA UT",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "PopularCoin PAPER WALLET",
+			backPaperWallet: "BITCOIN PAPER WALLET",
 			backAmount: "Insatt belopp",
 			backDate: "Datum",
 			backNotes: "Anteckningar:",
-			backInst1: "För att sätta in PopularCoin: använd den publika adressen.",
-			backInst2: "Kontrollera saldot genom att söka efter den publika adressen på till exempel popularcoin.info/chain/PopCoin",
-			backInst3: "<strong>ANVÄND ELLER VISA INTE DEN PRIVATA NYCKELN</strong> förrän det är dags att flytta saldot till en PopularCoinklient, börs eller online-plånbok.",
+			backInst1: "För att sätta in bitcoin: använd den publika adressen.",
+			backInst2: "Kontrollera saldot genom att söka efter den publika adressen på till exempel blockchain.info",
+			backInst3: "<strong>ANVÄND ELLER VISA INTE DEN PRIVATA NYCKELN</strong> förrän det är dags att flytta saldot till en bitcoinklient, börs eller online-plånbok.",
 			backInst4: "När du flyttar bitcoin från en paperwallet bör du alltid <strong>TÖMMA DEN HELT</strong>. Om du inte gör det riskerar du att förlora kvarvarande bitcoin.<br /><br />Frågor? Besök bitcoinpaperwallet.com",
 		}
 	};
